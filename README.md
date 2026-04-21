@@ -85,14 +85,14 @@ All models trained on 80/20 train-test split with stratification. KNN was run on
 
 | Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
 |---|---|---|---|---|---|
-| Logistic Regression | 0.810 | 0.961 | 0.805 | 0.876 | 0.883 |
-| SVM (LinearSVC) | 0.808 | 0.961 | 0.804 | 0.875 | 0.882 |
-| KNN (k=15, 100K sample) | 0.909 | 0.931 | 0.959 | 0.945 | 0.922 |
-| Decision Tree (max_depth=5) | 0.858 | 0.963 | 0.862 | 0.910 | 0.914 |
-| Random Forest (baseline) | 0.933 | 0.950 | 0.969 | 0.959 | 0.955 |
-| **Random Forest (tuned)** | **-** | **-** | **-** | **0.9598** | **-** |
+| Logistic Regression | 0.8087 | 0.9602 | 0.8050 | 0.8758 | 0.8834 |
+| SVM (LinearSVC) | 0.8086 | 0.9604 | 0.8046 | 0.8756 | 0.8822 |
+| KNN (k=15, 100K sample) | 0.9069 | 0.9319 | 0.9589 | 0.9452 | 0.9215 |
+| Decision Tree (max_depth=5) | 0.8575 | 0.9625 | 0.8635 | 0.9103 | 0.9138 |
+| Random Forest (baseline) | 0.9319 | 0.9503 | 0.9694 | 0.9597 | 0.9547 |
+| **Random Forest (tuned)** | **0.9319** | **0.9503** | **0.9694** | **0.9598** | **0.9547** |
 
-CV mean for tuned RF: 0.9590
+Tuned RF CV mean (5-fold): 0.9590. GridSearchCV improved F1 by +0.0001 over baseline.
 
 ---
 
