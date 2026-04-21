@@ -1,0 +1,15 @@
+INFO6105 Team 6 Project - Dataset Links
+========================================
+
+Google Drive (Full Dataset):
+https://drive.google.com/drive/folders/137aCrOPn64zsqZWuUh5OIYrUYawimXhO?usp=drive_link
+
+File: wildfires_full.csv (~779 MB, 1,880,465 rows)
+Converted from: FPA_FOD_20170508.sqlite (777 MB)
+
+Original Kaggle Source:
+https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires
+
+Original Citation:
+Short, K.C. (2017). Spatial wildfire occurrence data for the United States,
+1992-2015 [FPA_FOD_20170508]. USDA Forest Service Research Data Archive.
