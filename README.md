@@ -12,7 +12,7 @@
 
 This project builds a binary classifier on the USDA Forest Service fire database (1992-2015). The target is simple — human-caused (1) vs lightning-caused (0) — but the data is not. 83.8% of fires are human-caused, which means accuracy is a useless metric here. A model that predicts "human" every time scores 83.8% and tells you nothing.
 
-We trained five models, focused on F1 score and ROC-AUC, and engineered five features from scratch. The tuned Random Forest hit F1 = 0.9598.
+We trained five models, focused on F1 score and ROC-AUC, and engineered five features from scratch. The tuned Random Forest hit F1 = 0.9598 on the human-caused class and F1 = 0.78 on the lightning-caused class.
 
 ---
 
@@ -48,7 +48,7 @@ The 5.2:1 ratio between human and natural fires is the core challenge. Accuracy 
 
 ![Temporal Analysis](Images/plot_03_temporal_analysis.png)
 
-**Fire size** — Most fires are small (Class A and B). Both human and natural fires follow a similar size distribution, so fire size alone is not a reliable predictor of cause.
+**Fire size** — Mean fire size is 30.9 acres for human-caused fires and 312.5 acres for natural ones. In the tuned Random Forest, fire size ranks 8th of 12 features by importance (0.049).
 
 ![Fire Size Analysis](Images/plot_04_fire_size_analysis.png)
 
@@ -65,16 +65,16 @@ The 5.2:1 ratio between human and natural fires is the core challenge. Accuracy 
 | Feature | Type | Description |
 |---|---|---|
 | `Season` | Engineered | Spring / Summer / Fall / Winter from discovery month |
-| `Is_Drought_Season` | Engineered | Binary flag for high-risk months (June-September) |
-| `Region` | Engineered | US geographic region from state |
-| `State_Fire_Rate` | Engineered | Historical human-caused fire rate per state |
+| `Is_Drought_Season` | Engineered | Binary flag for Summer and Fall (June-November) |
+| `Region` | Engineered | West / Central / East from longitude (below -100, -100 to -85, above -85) |
+| `State_Fire_Rate` | Engineered | Each state's share of all fires in the dataset (computed on the full table before the split; it does not use the target) |
 | `Owner_Type` | Engineered | Land ownership category (federal, state, private) |
 | `longitude` | Raw | Strongest individual predictor |
 | `latitude` | Raw | Geographic signal for cause |
 | `fire_year` | Raw | Year of occurrence |
 | `fire_size` | Raw | Acres burned |
-| `response_time` | Raw | Days between discovery and containment |
-| `discovery_doy` | Raw | Day of year |
+| `response_time` | Raw | Days between discovery and containment (missing values filled with the median) |
+| `state` | Raw | US state (label-encoded) |
 | `fire_size_class` | Raw | USDA size category A-G |
 
 ---
@@ -93,6 +93,13 @@ All models trained on 80/20 train-test split with stratification. KNN was run on
 | **Random Forest (tuned)** | **0.9322** | **0.9529** | **0.9668** | **0.9598** | **0.9579** |
 
 Tuned RF CV mean (5-fold): 0.9590. GridSearchCV improved F1 by +0.0001 over baseline.
+
+The metrics above treat human-caused (1) as the positive class. Per class, the tuned Random Forest gets:
+
+| Class | Precision | Recall | F1 |
+|---|---|---|---|
+| Human-caused | 0.95 | 0.97 | 0.96 |
+| Lightning-caused | 0.82 | 0.75 | 0.78 |
 
 ---
 
