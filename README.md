@@ -90,7 +90,7 @@ All models trained on 80/20 train-test split with stratification. KNN was run on
 | KNN (k=15, 100K sample) | 0.9069 | 0.9319 | 0.9589 | 0.9452 | 0.9215 |
 | Decision Tree (max_depth=5) | 0.8575 | 0.9625 | 0.8635 | 0.9103 | 0.9138 |
 | Random Forest (baseline) | 0.9319 | 0.9503 | 0.9694 | 0.9597 | 0.9547 |
-| **Random Forest (tuned)** | **0.9319** | **0.9503** | **0.9694** | **0.9598** | **0.9547** |
+| **Random Forest (tuned)** | **0.9322** | **0.9529** | **0.9668** | **0.9598** | **0.9579** |
 
 Tuned RF CV mean (5-fold): 0.9590. GridSearchCV improved F1 by +0.0001 over baseline.
 
